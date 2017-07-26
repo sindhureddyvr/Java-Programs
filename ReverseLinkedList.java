@@ -4,15 +4,17 @@ public class ListNode {
       ListNode(int x) { val = x; }
   }
 
-//Floyd's Cycle Algorithm
-public boolean hasCycle(ListNode head) {
-		ListNode slow = head;
-		ListNode fast = head;
-		while (fast != null && fast.next != null && slow != null) {
-			fast = fast.next.next;
-			slow = slow.next;
-			if (fast == slow)
-				return true;
+public ListNode reverseList(ListNode head) {
+		if (head == null || head.next == null)
+			return head;
+
+		ListNode prev = null;
+		ListNode cur = head;
+		while (cur != null) {
+			ListNode next = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = next;
 		}
-		return false;
+		return prev;
 	}
